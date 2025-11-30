@@ -1,14 +1,13 @@
-import DiplabLogo from './assets/images/logo.png';
 import './App.css';
+import { Route, Routes } from 'react-router';
+import Example from './pages/example';
 
 function App() {
   return (
-    <>
-      <div>
-        <img src={DiplabLogo} className="logo diplab" alt="Diplab Logo" />
-      </div>
-      <p className="coming-soon">Coming soon...</p>
-    </>
+    <Routes>
+      <Route index element={<Example />} />
+      <Route path="example" element={<Example />} />
+    </Routes>
   );
 }
 
