@@ -58,7 +58,9 @@ const PER_PAGE = 8;
 export default function PilihBarang() {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [selectedItems, setSelectedItems] = useState({});
+  const [selectedItems, setSelectedItems] = useState<Record<number, number>>(
+    {}
+  );
 
   // 🔍 Filter + Search
   const filteredItems = useMemo(() => {
@@ -75,8 +77,9 @@ export default function PilihBarang() {
   );
 
   // ➕➖ Quantity Handler
-  const changeQty = (index, change) => {
+  const changeQty = (index: number, change: number) => {
     setSelectedItems((prev) => {
+      console.log(prev);
       const qty = (prev[index] || 0) + change;
       if (qty <= 0) {
         const copy = { ...prev };
