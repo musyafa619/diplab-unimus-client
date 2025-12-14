@@ -4,6 +4,7 @@ import Example from "./pages/example";
 import { Halaman } from "./pages/halaman";
 import Identitas from "./pages/identitas";
 import PilihBarang from "./pages/pilihBarang";
+import { Home } from "./pages/home";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="deli" element={<Halaman />} />
       <Route path="identitas" element={<Identitas />} />
       <Route path="pilih-barang" element={<PilihBarang />} />
+      <Route path="home" element={<Home />} />
     </Routes>
   );
 }
