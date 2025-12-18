@@ -4,6 +4,7 @@ import DataMahasiswa from "../../components/DataMahasiswa/DataMahasiswa";
 
 function IdentitasNew() {
   const [search, setSearch] = useState("");
+  const [showDataMahasiswa, setShowDataMahasiswa] = useState(false);
 
   return (
     <div>
@@ -25,7 +26,7 @@ function IdentitasNew() {
       <div className={styles["container"]}>
         <h2 className={styles["formTitle"]}>Masukan Data Mahasiswa</h2>
         <p className={styles["formSubtitle"]}>
-          Masukan NIM anda untuk menampilkan data mahasiswa 
+          Masukan NIM anda untuk menampilkan data mahasiswa
           <p>secara otomatis</p>
         </p>
 
@@ -41,18 +42,22 @@ function IdentitasNew() {
                 setSearch(e.target.value);
               }}
             />
-            <button>
+            <button onClick={() => setShowDataMahasiswa(true)}>
               <span className="materialSymbolsOutlined">Cari</span>
             </button>
           </div>
-          <DataMahasiswa data={{
-                      nama: "",
-                      semester: 0,
-                      telp: "",
-                      email: "",
-                      jurusan: "",
-                      alamat: ""
-                  }} />
+          {search.length > 0 && showDataMahasiswa && (
+            <DataMahasiswa
+              data={{
+                nama: "",
+                semester: 0,
+                telp: "",
+                email: "",
+                jurusan: "",
+                alamat: "",
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
