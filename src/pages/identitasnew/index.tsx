@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "./style.module.css";
+import DataMahasiswa from "../../components/DataMahasiswa/DataMahasiswa";
 
 function IdentitasNew() {
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <div>
@@ -23,9 +23,10 @@ function IdentitasNew() {
       </div>
 
       <div className={styles["container"]}>
-        <h2 className={styles["formTitle"]}>Mohon Data Mahasiswa</h2>
+        <h2 className={styles["formTitle"]}>Masukan Data Mahasiswa</h2>
         <p className={styles["formSubtitle"]}>
-          Masukan NIM anda untuk menampilkan data mahasiswa secara otomatis
+          Masukan NIM anda untuk menampilkan data mahasiswa 
+          <p>secara otomatis</p>
         </p>
 
         {/* CONTAINER */}
@@ -34,17 +35,24 @@ function IdentitasNew() {
           <div className={styles.searchBar}>
             <input
               type="text"
-              placeholder="Cari Barang..."
+              placeholder="Masukan NIM anda"
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
-                setCurrentPage(1);
               }}
             />
             <button>
-              <span className="materialSymbolsOutlined">search</span>
+              <span className="materialSymbolsOutlined">Cari</span>
             </button>
           </div>
+          <DataMahasiswa data={{
+                      nama: "",
+                      semester: 0,
+                      telp: "",
+                      email: "",
+                      jurusan: "",
+                      alamat: ""
+                  }} />
         </div>
       </div>
     </div>
