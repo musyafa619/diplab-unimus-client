@@ -11,9 +11,10 @@ type Mahasiswa = {
 
 interface Props {
   data: Mahasiswa;
+  setShowModal: (val: boolean) => void;
 }
 
-function DataMahasiswa({ data }: Props) {
+function DataMahasiswa({ data, setShowModal }: Props) {
   return (
     <>
       <div className={styles.dataMahasiswa}>
@@ -56,10 +57,7 @@ function DataMahasiswa({ data }: Props) {
         </div>
 
         <div className={styles.inputKeterangan}>
-          <textarea
-            id="keterangan"
-            placeholder="Keterangan"
-          />
+          <textarea id="keterangan" placeholder="Keterangan" />
         </div>
       </div>
 
@@ -77,7 +75,11 @@ function DataMahasiswa({ data }: Props) {
         </label>
       </div>
 
-      <button type="submit" className={styles.submitBtn}>
+      <button
+        type="submit"
+        className={styles.submitBtn}
+        onClick={() => setShowModal(true)}
+      >
         Ajukan Peminjaman
       </button>
     </>
@@ -85,3 +87,4 @@ function DataMahasiswa({ data }: Props) {
 }
 
 export default DataMahasiswa;
+

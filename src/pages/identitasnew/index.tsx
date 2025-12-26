@@ -1,10 +1,12 @@
 import { useState } from "react";
 import styles from "./style.module.css";
 import DataMahasiswa from "../../components/DataMahasiswa/DataMahasiswa";
+import Modal from "../../components/Modal/Modal";
 
 function IdentitasNew() {
   const [search, setSearch] = useState("");
   const [showDataMahasiswa, setShowDataMahasiswa] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div>
@@ -49,15 +51,21 @@ function IdentitasNew() {
           {search.length > 0 && showDataMahasiswa && (
             <DataMahasiswa
               data={{
-                nama: "",
-                semester: 0,
-                telp: "",
-                email: "",
-                jurusan: "",
-                alamat: "",
+                nama: "Dummy",
+                semester: 5,
+                telp: "08123456789",
+                email: "test@gmail.com",
+                jurusan: "Informatika",
+                alamat: "Kedungmundu Semarang",
               }}
+              setShowModal={setShowModal}
             />
           )}
+          <Modal
+            isOpen={showModal}
+            onClose={() => setShowModal(false)}
+            type="sukses"
+          />
         </div>
       </div>
     </div>
