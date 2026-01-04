@@ -1,0 +1,77 @@
+.container {
+  margin: auto;
+  padding: 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 32px;
+  width : 100%
+}
+
+/* SEARCH */
+.searchBar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px; 
+  width : 60%
+}
+
+.searchBar input {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc; 
+  border-radius: 8px 0 0 8px;
+}
+
+.searchBar button {
+  background-color: #357ae8;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* STEP HEADER */
+.stepHeader {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(to right, #67b3f4, #357ae8);
+  color: white;
+  font-weight: 500;
+  padding: 20px 0px;
+}
+
+.stepWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.step {
+  background-color: white;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  color: #007dfe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FORM TITLE */
+.formTitle {
+  font-size: 32px;
+  margin: 0px;
+  margin-bottom: 8px;
+}
+
+.formSubtitle {
+  margin: 0px;
+  justify-content: center;
+  text-align: center;
+}
