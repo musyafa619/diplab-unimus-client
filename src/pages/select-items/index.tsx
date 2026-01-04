@@ -1,60 +1,61 @@
-import { useState, useMemo } from "react";
-import styles from "./style.module.css";
-import img1 from "../../assets/images/kameraDslr.png";
-import img2 from "../../assets/images/laptop.png";
-import img3 from "../../assets/images/router.png";
-import img4 from "../../assets/images/switchHubTPLink.jpg";
-import img5 from "../../assets/images/laptopLenovo.png";
-import img6 from "../../assets/images/kameraCanon.png";
-import img7 from "../../assets/images/switchHub8port.png";
-import img8 from "../../assets/images/lanTester.png";
+import { useState, useMemo } from 'react';
+import styles from './style.module.css';
+import img1 from '../../assets/images/kameraDslr.png';
+import img2 from '../../assets/images/laptop.png';
+import img3 from '../../assets/images/router.png';
+import img4 from '../../assets/images/switchHubTPLink.jpg';
+import img5 from '../../assets/images/laptopLenovo.png';
+import img6 from '../../assets/images/kameraCanon.png';
+import img7 from '../../assets/images/switchHub8port.png';
+import img8 from '../../assets/images/lanTester.png';
+import { useNavigate } from 'react-router';
 
 const itemsData = [
   {
-    name: "Kamera DSLR",
-    desc: "EOS 1500D Kit (EF S18-55)",
+    name: 'Kamera DSLR',
+    desc: 'EOS 1500D Kit (EF S18-55)',
     img: img1,
     available: true,
   },
   {
-    name: "Laptop Acer",
-    desc: "Acer Swift Lite 14 Air",
+    name: 'Laptop Acer',
+    desc: 'Acer Swift Lite 14 Air',
     img: img2,
     available: false,
   },
   {
-    name: "Router TP Link",
-    desc: "TL-WR840N",
+    name: 'Router TP Link',
+    desc: 'TL-WR840N',
     img: img3,
     available: true,
   },
   {
-    name: "Switch Hub TP Link",
-    desc: "TL-SG 1006D 4 port",
+    name: 'Switch Hub TP Link',
+    desc: 'TL-SG 1006D 4 port',
     img: img4,
     available: true,
   },
   {
-    name: "Laptop Lenovo",
-    desc: "ThinkPad (seri bisnis)",
+    name: 'Laptop Lenovo',
+    desc: 'ThinkPad (seri bisnis)',
     img: img5,
     available: true,
   },
   {
-    name: "Kamera Canon",
-    desc: "Canon 1D X",
+    name: 'Kamera Canon',
+    desc: 'Canon 1D X',
     img: img6,
     available: true,
   },
   {
-    name: "Switch Hub TP Link",
-    desc: "TL-SG 1008B 8 port",
+    name: 'Switch Hub TP Link',
+    desc: 'TL-SG 1008B 8 port',
     img: img7,
     available: false,
   },
   {
-    name: "LAN Tester",
-    desc: "LAN tester",
+    name: 'LAN Tester',
+    desc: 'LAN tester',
     img: img8,
     available: true,
   },
@@ -62,9 +63,11 @@ const itemsData = [
 
 const PER_PAGE = 8;
 
-export default function PilihBarang() {
+export default function SelectItems() {
+  const navigate = useNavigate();
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [selectedItems, setSelectedItems] = useState<Record<number, number>>(
     {}
   );
@@ -146,7 +149,7 @@ export default function PilihBarang() {
             return (
               <div
                 key={globalIndex}
-                className={`${styles.card} ${qty ? styles.selected : ""}`}
+                className={`${styles.card} ${qty ? styles.selected : ''}`}
               >
                 <img src={item.img} alt={item.name} />
 
@@ -196,7 +199,7 @@ export default function PilihBarang() {
             {Array.from({ length: totalPages }).map((_, i) => (
               <button
                 key={i}
-                className={i + 1 === currentPage ? styles.active : ""}
+                className={i + 1 === currentPage ? styles.active : ''}
                 onClick={() => setCurrentPage(i + 1)}
               >
                 {i + 1}
@@ -204,7 +207,12 @@ export default function PilihBarang() {
             ))}
           </div>
 
-          <button className={styles.nextBtn}>Selanjutnya</button>
+          <button
+            onClick={() => navigate('/identitas')}
+            className={styles.nextBtn}
+          >
+            Selanjutnya
+          </button>
         </div>
       </div>
     </div>

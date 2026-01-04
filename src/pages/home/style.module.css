@@ -15,17 +15,16 @@ header {
 }
 
 .logo img {
-  width: 120px;   
+  width: 120px;
   display: flex;
   height: auto;
 }
-
 
 /* HERO SECTION */
 .hero {
   position: relative;
   background: url('../../assets/images/bg.png') center/cover no-repeat;
-  height: 350px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -38,25 +37,20 @@ header {
   height: 100%;
   display: flex;
   align-items: center;
-}
-
-.hero-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 50px 80px;
-  color: #fff;
+  padding: 100px;
+  gap: 40px;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
   text-align: left;
-  max-width: 900px;
   font-family: 'Poppins' sans-serif;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  color: #fff;
+  flex: 1;
 }
 
 .hero-content h2 {
@@ -64,6 +58,7 @@ header {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 20px;
+  max-width: 700px;
 }
 
 .hero-content p {
@@ -71,10 +66,12 @@ header {
   line-height: 1.5;
   margin-bottom: 20px;
   color: #f5f5f5;
+  text-align: left;
+  max-width: 700px;
 }
 
 .hero-content a {
-  background-color: #007DFE;
+  background-color: #007dfe;
   color: #fff;
   border: none;
   padding: 12px 28px;
@@ -99,12 +96,14 @@ header {
   transition: background 0.3s ease;
   white-space: nowrap;
   font-family: 'Poppins' sans-serif;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
   background: #0056b3;
+  color: #e8e8e8;
 }
-
 
 /* INFO SECTION */
 .info {
@@ -112,9 +111,14 @@ header {
   padding: 60px 0;
 }
 
+.info-wrapper {
+  width: 100%;
+  margin-top: 50px;
+}
+
 .info h3 {
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 40px;
   margin-bottom: 60px;
   text-align: center;
@@ -151,8 +155,8 @@ header {
 .number {
   width: 32px;
   height: 32px;
-  border: 2px solid #007DFE;
-  color: #007DFE;
+  border: 2px solid #007dfe;
+  color: #007dfe;
   font-weight: bold;
   border-radius: 50%;
   display: flex;
@@ -189,7 +193,7 @@ header {
 body.notif-body {
   background-color: #f7f8fa;
   padding: 60px 0;
-  margin : 90px;
+  margin: 90px;
 }
 
 .email-container {
@@ -197,7 +201,7 @@ body.notif-body {
   margin: 90px auto;
   background: #ffffff;
   border-radius: 10px;
-  border: 1px solid #0067E5;
+  border: 1px solid #0067e5;
   padding: 20px 40px 20px 40px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
@@ -218,7 +222,7 @@ body.notif-body {
   font-family: 'Poppins';
   font-size: 28px;
   font-weight: 600;
-  color: #767A7D;
+  color: #767a7d;
 }
 
 .content p.greeting {
@@ -238,7 +242,7 @@ body.notif-body {
 }
 
 .details {
-  background: #EDEFFE;
+  background: #edeffe;
   border-radius: 15px;
   padding: 20px 20px 20px 20px;
   margin-bottom: 20px;
@@ -275,8 +279,8 @@ body.notif-body {
   margin-top: 15px;
 }
 
- .table-tr {
- margin-bottom: 100px !;
+.table-tr {
+  margin-bottom: 100px !;
 }
 
 .details td {
@@ -291,16 +295,15 @@ body.notif-body {
 }
 
 .info {
-  background: #EDEFFE;
   padding: 10px 10px 50px 0px;
   border-radius: 15px;
   display: flex;
   gap: 12px;
 }
 
- .icon {
+.icon {
   padding: 20px 0px 20px 0px;
- }  
+}
 
 .content {
   padding: 15px 5px 10px 5px;
@@ -309,9 +312,8 @@ body.notif-body {
 .divider {
   height: 100px;
   width: 15px;
-  background-color: #0067E5;
+  background-color: #0067e5;
   border-radius: 12px;
-  
 }
 
 .info-email strong {

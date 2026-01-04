@@ -1,14 +1,16 @@
-import styles from './style.module.css'
-import SewaBackground from '../../assets/images/sewa.png'
-import LogoDiplab from '../../assets/images/logo.png'
+import styles from './style.module.css';
+import SewaBackground from '../../assets/images/sewa.png';
+import LogoDiplab from '../../assets/images/logo.png';
+import { useNavigate } from 'react-router';
 
 export const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <header>
         <div className={styles.container}>
           <div className={styles.logo}>
-          <img src={LogoDiplab} alt="Logo" />
+            <img src={LogoDiplab} alt="Logo" />
           </div>
         </div>
       </header>
@@ -16,13 +18,21 @@ export const Home = () => {
       <section className={styles.hero}>
         <div className={styles.heroOverlay}>
           <div className={styles.heroContent}>
-            <h2>Sewa peralatan lab informatika kini lebih mudah dan efisien.</h2>
-            <p>Tanpa antre dan tanpa ribet, kini kamu bisa mengurus
-              semuanya hanya dengan beberapa klik lewat Diplab. Proses
-              yang dulu memakan waktu, sekarang jadi super praktis dan efisien!
+            <h2>
+              Sewa peralatan lab informatika kini lebih mudah dan efisien.
+            </h2>
+            <p>
+              Tanpa antre dan tanpa ribet, kini kamu bisa mengurus semuanya
+              hanya dengan beberapa klik lewat Diplab. Proses yang dulu memakan
+              waktu, sekarang jadi super praktis dan efisien!
             </p>
           </div>
-           <a href="#" className={styles.btnPrimary}>PINJAM SEKARANG</a>
+          <button
+            onClick={() => navigate('/select-date')}
+            className={styles.btnPrimary}
+          >
+            PINJAM SEKARANG
+          </button>
         </div>
       </section>
 
@@ -59,12 +69,10 @@ export const Home = () => {
                   <p>Lengkapi data diri anda...</p>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
       </section>
     </div>
-  )
-}
+  );
+};

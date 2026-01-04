@@ -1,0 +1,42 @@
+.tes {
+  color: red;
+}
+
+.calender-container {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.calender {
+  width: 100%;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+  padding: 15px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+  font-family: 'Poppins' sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+  color: #e8e8e8;
+}
+
+.select-date-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
