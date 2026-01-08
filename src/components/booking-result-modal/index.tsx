@@ -1,20 +1,20 @@
-import styles from "./style.module.css";
-import ikonSukses from "../../assets/images/ikonSukses.png";
-import ikonGagal from "../../assets/images/ikonGagal.png";
+import styles from './style.module.css';
+import ikonSukses from '../../assets/images/ikonSukses.png';
+import ikonGagal from '../../assets/images/ikonGagal.png';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  type: "sukses" | "gagal";
+  type: 'success' | 'failed';
 }
 
-const Modal = ({ isOpen, onClose, type }: Props) => {
+const BookingResultModal = ({ isOpen, onClose, type }: Props) => {
   if (!isOpen) return null;
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        {type === "sukses" ? (
+        {type === 'success' ? (
           <>
             <img className={styles.ikon} src={ikonSukses} alt="Sukses" />
             <h2>Pendaftaran Berhasil!</h2>
@@ -39,4 +39,4 @@ const Modal = ({ isOpen, onClose, type }: Props) => {
   );
 };
 
-export default Modal;
+export default BookingResultModal;

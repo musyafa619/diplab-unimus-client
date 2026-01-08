@@ -59,3 +59,7 @@
 .react-datepicker {
   border: none !important;
 }
+
+.react-datepicker__day {
+  border: 1px solid #d3d8dd !important;
+}

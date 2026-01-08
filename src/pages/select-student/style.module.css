@@ -7,22 +7,23 @@
   align-items: center;
   height: 100%;
   padding-bottom: 32px;
-  width : 100%
+  width: 100%;
 }
 
 /* SEARCH */
 .searchBar {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px; 
-  width : 60%
+  margin-bottom: 25px;
+  margin-top: 25px;
+  width: 60%;
 }
 
 .searchBar input {
   width: 100%;
   padding: 10px 16px;
   font-size: 16px;
-  border: 1px solid #ccc; 
+  border: 1px solid #ccc;
   border-radius: 8px 0 0 8px;
 }
 
@@ -74,4 +75,64 @@
   margin: 0px;
   justify-content: center;
   text-align: center;
+}
+
+.agreement {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 60%;
+}
+
+.checkboxAgreement {
+  margin-top: 4px;
+  width: fit-content;
+}
+
+.submitBtn {
+  margin-top: 20px;
+  background-color: #357ae8;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 60%;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.submitBtnDisabled {
+  margin-top: 20px;
+  background-color: #7f7f7f;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 60%;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.submitBtn:hover {
+  background-color: #285dc1;
+}
+
+.labelAgreement {
+  text-transform: capitalize !important;
+}
+
+.inputKeterangan {
+  margin-top: 16px;
+  width: 60%;
+}
+
+.inputKeterangan textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
 }

@@ -1,24 +1,25 @@
 import DatePicker from 'react-datepicker';
 import BookingStepper from '../../components/booking-stepper';
-import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './style.module.css';
 import { useNavigate } from 'react-router';
+import { useBookingStore } from '../../store/itemStore';
 
 export default function SelectDates() {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [endDate, setEndDate] = useState<Date | null>(null);
   const navigate = useNavigate();
+  const { startDate, endDate, setStartDate, setEndDate } = useBookingStore(
+    (state) => state
+  );
 
   const onChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
+
     setStartDate(start);
     setEndDate(end);
   };
 
   const handleSelectItems = () => {
-    console.log(startDate, endDate);
-    // navigate('/select-items')
+    navigate('/select-items');
   };
 
   return (

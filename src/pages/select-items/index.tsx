@@ -1,106 +1,73 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './style.module.css';
-import img1 from '../../assets/images/kameraDslr.png';
-import img2 from '../../assets/images/laptop.png';
-import img3 from '../../assets/images/router.png';
-import img4 from '../../assets/images/switchHubTPLink.jpg';
-import img5 from '../../assets/images/laptopLenovo.png';
-import img6 from '../../assets/images/kameraCanon.png';
-import img7 from '../../assets/images/switchHub8port.png';
-import img8 from '../../assets/images/lanTester.png';
+import type { ItemListResponse } from '../../types/item';
+import { getAvailableItems } from '../../api/services';
+import { useBookingStore } from '../../store/itemStore';
 import { useNavigate } from 'react-router';
-
-const itemsData = [
-  {
-    name: 'Kamera DSLR',
-    desc: 'EOS 1500D Kit (EF S18-55)',
-    img: img1,
-    available: true,
-  },
-  {
-    name: 'Laptop Acer',
-    desc: 'Acer Swift Lite 14 Air',
-    img: img2,
-    available: false,
-  },
-  {
-    name: 'Router TP Link',
-    desc: 'TL-WR840N',
-    img: img3,
-    available: true,
-  },
-  {
-    name: 'Switch Hub TP Link',
-    desc: 'TL-SG 1006D 4 port',
-    img: img4,
-    available: true,
-  },
-  {
-    name: 'Laptop Lenovo',
-    desc: 'ThinkPad (seri bisnis)',
-    img: img5,
-    available: true,
-  },
-  {
-    name: 'Kamera Canon',
-    desc: 'Canon 1D X',
-    img: img6,
-    available: true,
-  },
-  {
-    name: 'Switch Hub TP Link',
-    desc: 'TL-SG 1008B 8 port',
-    img: img7,
-    available: false,
-  },
-  {
-    name: 'LAN Tester',
-    desc: 'LAN tester',
-    img: img8,
-    available: true,
-  },
-];
-
-const PER_PAGE = 8;
 
 export default function SelectItems() {
   const navigate = useNavigate();
-
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [selectedItems, setSelectedItems] = useState<Record<number, number>>(
-    {}
-  );
+  const { selectedItems, setSelectedItems, startDate, endDate, reset } =
+    useBookingStore((state) => state);
 
-  // 🔍 Filter + Search
-  const filteredItems = useMemo(() => {
-    return itemsData.filter((item) =>
-      item.name.toLowerCase().includes(search.toLowerCase())
-    );
-  }, [search]);
-
-  // 📄 Pagination
-  const totalPages = Math.ceil(filteredItems.length / PER_PAGE);
-  const pageItems = filteredItems.slice(
-    (currentPage - 1) * PER_PAGE,
-    currentPage * PER_PAGE
-  );
-
-  console.log(pageItems);
+  const [itemList, setItemList] = useState<ItemListResponse>({
+    data: [],
+    meta: {
+      page: 1,
+      limit: 5,
+      total: 0,
+      totalPages: 0,
+    },
+  });
 
   // ➕➖ Quantity Handler
-  const changeQty = (index: number, change: number) => {
-    setSelectedItems((prev) => {
-      console.log(prev);
-      const qty = (prev[index] || 0) + change;
-      if (qty <= 0) {
-        const copy = { ...prev };
-        delete copy[index];
-        return copy;
+  const changeQty = (id: string, change: number) => {
+    const selectedItem = selectedItems?.find((item) => item.id === id);
+    if (selectedItem) {
+      // Update existing item quantity
+      const newQty = selectedItem.quantity + change;
+      if (newQty <= 0) {
+        // Remove item if quantity is zero or less
+        setSelectedItems(selectedItems.filter((item) => item.id !== id));
+      } else {
+        setSelectedItems(
+          selectedItems.map((item) =>
+            item.id === id ? { ...item, quantity: newQty } : item
+          )
+        );
       }
-      return { ...prev, [index]: qty };
-    });
+    } else if (change > 0) {
+      // Add new item with initial quantity
+      setSelectedItems([...selectedItems, { id, quantity: change }]);
+    }
   };
+
+  const fetchAvailableItems = useCallback(async () => {
+    const res: ItemListResponse = await getAvailableItems({
+      startDate: startDate?.toISOString(),
+      endDate: endDate?.toISOString(),
+      page: currentPage,
+      limit: 8,
+    });
+    setItemList(res);
+  }, [startDate, endDate, currentPage]);
+
+  const handleSelectStudent = () => {
+    navigate('/select-student');
+  };
+
+  useEffect(() => {
+    fetchAvailableItems();
+  }, [fetchAvailableItems]);
+
+  useEffect(() => {
+    if (!startDate || !endDate) {
+      navigate('/select-dates');
+      reset();
+    }
+  }, [startDate, endDate, navigate, reset]);
 
   return (
     <div>
@@ -142,33 +109,38 @@ export default function SelectItems() {
 
         {/* GRID */}
         <div className={styles.grid}>
-          {pageItems.map((item, index) => {
-            const globalIndex = (currentPage - 1) * PER_PAGE + index;
-            const qty = selectedItems[globalIndex];
+          {itemList?.data?.map((item) => {
+            const qty =
+              selectedItems.find((i) => i.id === item.id)?.quantity || 0;
 
             return (
               <div
-                key={globalIndex}
+                key={item.id}
                 className={`${styles.card} ${qty ? styles.selected : ''}`}
               >
-                <img src={item.img} alt={item.name} />
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  style={{ objectFit: 'contain' }}
+                />
 
                 <div className={styles.cardDescription}>
                   <h3>{item.name}</h3>
-                  <p>{item.desc}</p>
+                  <p>{item.description}</p>
 
-                  {item.available ? (
+                  {item.stock > 0 ? (
                     qty ? (
                       <div className={styles.quantity}>
                         <button
-                          onClick={() => changeQty(globalIndex, -1)}
+                          onClick={() => changeQty(item.id, -1)}
                           className={styles.qtyBtn}
                         >
                           −
                         </button>
                         <span className={styles.qtyValue}>{qty}</span>
                         <button
-                          onClick={() => changeQty(globalIndex, 1)}
+                          disabled={qty === item.stock}
+                          onClick={() => changeQty(item.id, 1)}
                           className={styles.qtyBtn}
                         >
                           +
@@ -177,7 +149,7 @@ export default function SelectItems() {
                     ) : (
                       <button
                         className={styles.btn}
-                        onClick={() => changeQty(globalIndex, 1)}
+                        onClick={() => changeQty(item.id, 1)}
                       >
                         Pinjam
                       </button>
@@ -196,7 +168,7 @@ export default function SelectItems() {
         {/* BOTTOM */}
         <div className={styles.bottom}>
           <div className={styles.pagination}>
-            {Array.from({ length: totalPages }).map((_, i) => (
+            {Array.from({ length: itemList?.meta?.totalPages }).map((_, i) => (
               <button
                 key={i}
                 className={i + 1 === currentPage ? styles.active : ''}
@@ -207,10 +179,7 @@ export default function SelectItems() {
             ))}
           </div>
 
-          <button
-            onClick={() => navigate('/identitas')}
-            className={styles.nextBtn}
-          >
+          <button onClick={handleSelectStudent} className={styles.nextBtn}>
             Selanjutnya
           </button>
         </div>

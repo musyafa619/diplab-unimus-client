@@ -1,0 +1,33 @@
+.dataMahasiswa {
+  margin-top: 24px;
+  width: 60%;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 150px 10px 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.label {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.colon {
+  color: #6b7280;
+}
+
+.value {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 500;
+}

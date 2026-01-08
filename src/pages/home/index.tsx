@@ -28,7 +28,7 @@ export const Home = () => {
             </p>
           </div>
           <button
-            onClick={() => navigate('/select-date')}
+            onClick={() => navigate('/select-dates')}
             className={styles.btnPrimary}
           >
             PINJAM SEKARANG
