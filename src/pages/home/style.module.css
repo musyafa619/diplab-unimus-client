@@ -12,10 +12,11 @@ header {
   padding: 15px 40px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins';
+
 }
 
 .logo img {
-  width: 120px;   
+  width: 150px;   
   display: flex;
   height: auto;
 }
@@ -25,11 +26,10 @@ header {
 .hero {
   position: relative;
   background: url('../../assets/images/bg.png') center/cover no-repeat;
-  height: 350px;
+  height: 500px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  font-family: 'Poppins' sans-serif;
+  text-align: left;
 }
 
 .hero-overlay {
@@ -41,64 +41,49 @@ header {
 }
 
 .hero-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 50px 80px;
+  padding: 0 80px;
   color: #fff;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  max-width: 900px;
-  font-family: 'Poppins' sans-serif;
 }
 
 .hero-content h2 {
-  text-align: left;
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 40px;
 }
 
 .hero-content p {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 20px;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-text h2 {
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 20px;
-  color: #f5f5f5;
+  text-align: left;
 }
 
-.hero-content a {
-  background-color: #007DFE;
-  color: #fff;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.hero-button:hover {
-  background-color: #005fc4;
+.hero-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 25px;
 }
 
 .btn-primary {
   background: #007bff;
   color: #fff;
+  margin-right: 50px;
   padding: 15px 40px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   transition: background 0.3s ease;
-  white-space: nowrap;
+  white-space: nowrap; 
   font-family: 'Poppins' sans-serif;
+  font-size: 20px;
 }
 
 .btn-primary:hover {
@@ -108,14 +93,14 @@ header {
 
 /* INFO SECTION */
 .info {
-  background: #fff;
-  padding: 60px 0;
+  background: #ffffff; /* sesuai figma */
+  padding: 80px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
   font-size: 40px;
+  font-weight: 700;
   margin-bottom: 60px;
   text-align: center;
 }
@@ -124,14 +109,20 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap;
+  gap: 70px;
 }
 
 .info-image img {
-  max-width: 800px;
-  height: auto;
-  display: block;
+  width: 600px;
+  height: 600px;
+}
+
+.info-wrapper {
+  width: 100%;
+}
+
+.info-wrapper h3 {
+  font-size: 50px;
 }
 
 .steps {
@@ -149,8 +140,8 @@ header {
 }
 
 .number {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   border: 2px solid #007DFE;
   color: #007DFE;
   font-weight: bold;
@@ -169,15 +160,16 @@ header {
 }
 
 .text h4 {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  text-align: left;
   color: #000;
   font-family: 'Poppins' sans-serif;
 }
 
 .text p {
-  font-size: 18px;
+  font-size: 20px;
   color: #555;
   margin: 0;
 }
@@ -187,7 +179,7 @@ header {
  =================================== */
 
 body.notif-body {
-  background-color: #f7f8fa;
+  background-color: #ffffff;
   padding: 60px 0;
   margin : 90px;
 }
@@ -202,25 +194,6 @@ body.notif-body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.email-container .logo {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-  font-size: 32px;
-  margin: 0px;
-}
-
-.email-container .logo .dip {
-  color: #000000;
-  /* hitam */
-}
-
-.email-container .logo .lab {
-  font-family: 'Poppins';
-  font-size: 28px;
-  font-weight: 600;
-  color: #767A7D;
-}
-
 .content p.greeting {
   text-align: center;
   color: #333;
@@ -230,7 +203,7 @@ body.notif-body {
 
 .content h2 {
   margin: 5px 0 0 0;
-  font-size: 25px;
+  font-size: 200px;
   font-weight: 700;
   color: #000;
   text-align: center;
@@ -291,11 +264,10 @@ body.notif-body {
 }
 
 .info {
-  background: #EDEFFE;
+  background: #ffffff;
   padding: 10px 10px 50px 0px;
-  border-radius: 15px;
   display: flex;
-  gap: 12px;
+  gap: 15px;
 }
 
  .icon {
