@@ -31,9 +31,15 @@ export default function BookingStepper({ step }: BookingStepperProps) {
 
   return (
     <div className={styles.stepHeader}>
-      <div className={styles.stepActive}>
+      <div
+        className={styles.stepActive}
+        style={{ flex: stepState?.active.length }}
+      >
         {stepState?.active.map((item) => (
-          <div className={`${styles.stepWrapper}`}>
+          <div
+            className={`${styles.stepWrapper}`}
+            style={{ width: '100%', padding: 10 }}
+          >
             <div className={styles.step}>{item.id.toString()}</div>
             {item.label}
           </div>
@@ -41,7 +47,7 @@ export default function BookingStepper({ step }: BookingStepperProps) {
       </div>
 
       {stepState?.deactive.map((item) => (
-        <div className={`${styles.stepWrapper}`}>
+        <div className={`${styles.stepWrapper}`} style={{ flex: 1 }}>
           <div className={styles.step}>{item.id.toString()}</div>
           {item.label}
         </div>

@@ -5,11 +5,14 @@ import { getAvailableItems } from '../../api/services';
 import { useBookingStore } from '../../store/itemStore';
 import { useNavigate } from 'react-router';
 import BookingStepper from '@/components/booking-stepper';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function SelectItems() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { selectedItems, setSelectedItems, startDate, endDate, reset } =
     useBookingStore((state) => state);
 
@@ -35,8 +38,8 @@ export default function SelectItems() {
       } else {
         setSelectedItems(
           selectedItems.map((item) =>
-            item.id === id ? { ...item, quantity: newQty } : item
-          )
+            item.id === id ? { ...item, quantity: newQty } : item,
+          ),
         );
       }
     } else if (change > 0) {
@@ -46,13 +49,20 @@ export default function SelectItems() {
   };
 
   const fetchAvailableItems = useCallback(async () => {
-    const res: ItemListResponse = await getAvailableItems({
-      startDate: startDate?.toISOString(),
-      endDate: endDate?.toISOString(),
-      page: currentPage,
-      limit: 8,
-    });
-    setItemList(res);
+    setIsLoading(true);
+    try {
+      const res: ItemListResponse = await getAvailableItems({
+        startDate: startDate?.toISOString(),
+        endDate: endDate?.toISOString(),
+        page: currentPage,
+        limit: 8,
+      });
+      setItemList(res);
+      setIsLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      setIsLoading(false);
+    }
   }, [startDate, endDate, currentPage]);
 
   const handleSelectStudent = () => {
@@ -93,63 +103,76 @@ export default function SelectItems() {
           </button>
         </div>
 
-        {/* GRID */}
-        <div className={styles.grid}>
-          {itemList?.data?.map((item) => {
-            const qty =
-              selectedItems.find((i) => i.id === item.id)?.quantity || 0;
+        {isLoading ? (
+          <Box
+            sx={{
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '60vh',
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : (
+          <div className={styles.grid}>
+            {itemList?.data?.map((item) => {
+              const qty =
+                selectedItems.find((i) => i.id === item.id)?.quantity || 0;
 
-            return (
-              <div
-                key={item.id}
-                className={`${styles.card} ${qty ? styles.selected : ''}`}
-              >
-                <img
-                  src={item.imageUrl}
-                  alt={item.name}
-                  style={{ objectFit: 'contain' }}
-                />
+              return (
+                <div
+                  key={item.id}
+                  className={`${styles.card} ${qty ? styles.selected : ''}`}
+                >
+                  <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    style={{ objectFit: 'contain' }}
+                  />
 
-                <div className={styles.cardDescription}>
-                  <h3>{item.name}</h3>
-                  <p>{item.description}</p>
+                  <div className={styles.cardDescription}>
+                    <h3>{item.name}</h3>
+                    <p>{item.description}</p>
 
-                  {item.stock > 0 ? (
-                    qty ? (
-                      <div className={styles.quantity}>
+                    {item.stock > 0 ? (
+                      qty ? (
+                        <div className={styles.quantity}>
+                          <button
+                            onClick={() => changeQty(item.id, -1)}
+                            className={styles.qtyBtn}
+                          >
+                            −
+                          </button>
+                          <span className={styles.qtyValue}>{qty}</span>
+                          <button
+                            disabled={qty === item.stock}
+                            onClick={() => changeQty(item.id, 1)}
+                            className={styles.qtyBtn}
+                          >
+                            +
+                          </button>
+                        </div>
+                      ) : (
                         <button
-                          onClick={() => changeQty(item.id, -1)}
-                          className={styles.qtyBtn}
-                        >
-                          −
-                        </button>
-                        <span className={styles.qtyValue}>{qty}</span>
-                        <button
-                          disabled={qty === item.stock}
+                          className={styles.btn}
                           onClick={() => changeQty(item.id, 1)}
-                          className={styles.qtyBtn}
                         >
-                          +
+                          Pinjam
                         </button>
-                      </div>
+                      )
                     ) : (
-                      <button
-                        className={styles.btn}
-                        onClick={() => changeQty(item.id, 1)}
-                      >
-                        Pinjam
+                      <button className={styles.btn} disabled>
+                        Tidak tersedia
                       </button>
-                    )
-                  ) : (
-                    <button className={styles.btn} disabled>
-                      Tidak tersedia
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* BOTTOM */}
         <div className={styles.bottom}>

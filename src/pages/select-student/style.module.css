@@ -10,6 +10,12 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 10px;
+  }
+}
+
 /* SEARCH */
 .searchBar {
   display: flex;
@@ -17,6 +23,16 @@
   margin-bottom: 25px;
   margin-top: 25px;
   width: 60%;
+}
+
+@media (max-width: 768px) {
+  .searchBar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    width: 100%;
+  }
 }
 
 .searchBar input {
@@ -67,8 +83,9 @@
 /* FORM TITLE */
 .formTitle {
   font-size: 32px;
-  margin: 0px;
+  margin-top: 56px;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .formSubtitle {
@@ -83,6 +100,12 @@
   gap: 12px;
   align-items: flex-start;
   width: 60%;
+}
+
+@media (max-width: 768px) {
+  .agreement {
+    width: 100%;
+  }
 }
 
 .checkboxAgreement {
@@ -127,6 +150,13 @@
 .inputKeterangan {
   margin-top: 16px;
   width: 60%;
+}
+
+@media (max-width: 768px) {
+  .inputKeterangan {
+    margin-top: 16px;
+    width: 100%;
+  }
 }
 
 .inputKeterangan textarea {

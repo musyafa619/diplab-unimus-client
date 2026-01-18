@@ -22,7 +22,7 @@ function IdentitasNew() {
   });
   const [studentData, setStudentData] = useState<Student | null>(null);
   const { selectedItems, reset, startDate, endDate } = useBookingStore(
-    (state) => state
+    (state) => state,
   );
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [note, setNote] = useState('');
@@ -65,7 +65,6 @@ function IdentitasNew() {
 
   const handleBackToHome = () => {
     setShowModal({ isOpen: false, type: 'success' });
-    reset();
     navigate('/');
   };
 
@@ -96,7 +95,7 @@ function IdentitasNew() {
               placeholder="Masukan NIM anda"
               value={search}
               onChange={(e) => {
-                setSearch(e.target.value);
+                setSearch(e.target.value.toUpperCase());
               }}
             />
             <button onClick={fetchStudentData}>

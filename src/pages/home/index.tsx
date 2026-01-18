@@ -2,9 +2,16 @@ import styles from './style.module.css';
 import SewaBackground from '../../assets/images/sewa.png';
 import LogoDiplab from '../../assets/images/logo.png';
 import { useNavigate } from 'react-router';
+import { useBookingStore } from '@/store/itemStore';
+import { useEffect } from 'react';
 
 export const Home = () => {
   const navigate = useNavigate();
+  const { reset } = useBookingStore((state) => state);
+
+  useEffect(() => {
+    reset();
+  }, [reset]);
   return (
     <div>
       <header>
