@@ -7,6 +7,7 @@ import { createBooking, getStudentData } from '../../api/services';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router';
 import { useBookingStore } from '../../store/itemStore';
+import BookingStepper from '@/components/booking-stepper';
 
 function IdentitasNew() {
   const navigate = useNavigate();
@@ -77,20 +78,7 @@ function IdentitasNew() {
 
   return (
     <div>
-      <div className={styles['stepHeader']}>
-        <div className={styles['stepWrapper']}>
-          <div className={styles['step']}>1</div>
-          Pilih Tanggal
-        </div>
-        <div className={styles['stepWrapper']}>
-          <div className={styles['step']}>2</div>
-          Pilih Barang
-        </div>
-        <div className={styles['stepWrapper']}>
-          <div className={styles['step']}>3</div>
-          Identitas
-        </div>
-      </div>
+      <BookingStepper step={3} />
 
       <div className={styles['container']}>
         <h2 className={styles['formTitle']}>Masukan Data Mahasiswa</h2>

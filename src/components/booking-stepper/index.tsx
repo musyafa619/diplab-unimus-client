@@ -1,26 +1,51 @@
 // import { useLocation } from 'react-router';
+import { useMemo } from 'react';
 import styles from './style.module.css';
 
-export default function BookingStepper() {
-  // const { pathname } = useLocation();
+const steps = [
+  {
+    id: 1,
+    label: 'Pilih Tanggal',
+  },
+  {
+    id: 2,
+    label: 'Pilih Barang',
+  },
+  {
+    id: 3,
+    label: 'Identitas',
+  },
+];
+
+type BookingStepperProps = {
+  step: number;
+};
+
+export default function BookingStepper({ step }: BookingStepperProps) {
+  const stepState = useMemo(() => {
+    return {
+      active: steps.filter((item) => item.id <= step),
+      deactive: steps.filter((item) => item.id > step),
+    };
+  }, [step]);
 
   return (
     <div className={styles.stepHeader}>
       <div className={styles.stepActive}>
-        <div className={`${styles.stepWrapper}`}>
-          <div className={styles.step}>1</div>
-          Pilih Tanggal
-        </div>
-      </div>
-      <div className={`${styles.stepWrapper}`}>
-        <div className={styles.step}>2</div>
-        Pilih Barang
+        {stepState?.active.map((item) => (
+          <div className={`${styles.stepWrapper}`}>
+            <div className={styles.step}>{item.id.toString()}</div>
+            {item.label}
+          </div>
+        ))}
       </div>
 
-      <div className={`${styles.stepWrapper}`}>
-        <div className={styles.step}>3</div>
-        Identitas
-      </div>
+      {stepState?.deactive.map((item) => (
+        <div className={`${styles.stepWrapper}`}>
+          <div className={styles.step}>{item.id.toString()}</div>
+          {item.label}
+        </div>
+      ))}
     </div>
   );
 }

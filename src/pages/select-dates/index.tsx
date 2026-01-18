@@ -11,6 +11,14 @@ export default function SelectDates() {
     (state) => state
   );
 
+  // Calculate date range: tomorrow to 4 weeks ahead
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const maxDate = new Date(tomorrow);
+  maxDate.setDate(maxDate.getDate() + 27); // 4 weeks from tomorrow
+
   const onChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
 
@@ -24,7 +32,7 @@ export default function SelectDates() {
 
   return (
     <div className={styles.selectDateContainer}>
-      <BookingStepper />
+      <BookingStepper step={1} />
       <div className={styles.calenderContainer}>
         <DatePicker
           selected={startDate}
@@ -33,6 +41,8 @@ export default function SelectDates() {
           endDate={endDate}
           selectsRange
           inline
+          minDate={tomorrow}
+          maxDate={maxDate}
           calendarClassName={styles.calender}
         />
       </div>
