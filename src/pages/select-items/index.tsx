@@ -4,6 +4,7 @@ import type { ItemListResponse } from '../../types/item';
 import { getAvailableItems } from '../../api/services';
 import { useBookingStore } from '../../store/itemStore';
 import { useNavigate } from 'react-router';
+import BookingStepper from '@/components/booking-stepper';
 
 export default function SelectItems() {
   const navigate = useNavigate();
@@ -72,22 +73,7 @@ export default function SelectItems() {
   return (
     <div>
       {/* STEP HEADER */}
-      <div className={styles.stepHeader}>
-        <div className={styles.stepActive}>
-          <div className={`${styles.stepWrapper} ${styles.step1}`}>
-            <div className={styles.step}>1</div>
-            Pilih Tanggal
-          </div>
-          <div className={`${styles.stepWrapper} ${styles.step2}`}>
-            <div className={styles.step}>2</div>
-            Pilih Barang
-          </div>
-        </div>
-        <div className={`${styles.stepWrapper} ${styles.step3}`}>
-          <div className={styles.step}>3</div>
-          Identitas
-        </div>
-      </div>
+      <BookingStepper step={2} />
 
       {/* CONTAINER */}
       <div className={styles.container}>
