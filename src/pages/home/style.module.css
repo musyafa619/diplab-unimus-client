@@ -12,15 +12,13 @@ header {
   padding: 15px 40px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins';
-
 }
 
 .logo img {
-  width: 150px;   
+  width: 150px;
   display: flex;
   height: auto;
 }
-
 
 /* HERO SECTION */
 .hero {
@@ -81,21 +79,26 @@ header {
   text-decoration: none;
   font-weight: 700;
   transition: background 0.3s ease;
-  white-space: nowrap; 
+  white-space: nowrap;
   font-family: 'Poppins' sans-serif;
   font-size: 20px;
 }
 
 .btn-primary:hover {
   background: #0056b3;
+  color: #e8e8e8;
 }
-
 
 /* INFO SECTION */
 .info {
   background: #ffffff; /* sesuai figma */
   padding: 80px 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-wrapper {
+  width: 100%;
+  margin-top: 50px;
 }
 
 .info h3 {
@@ -142,8 +145,8 @@ header {
 .number {
   width: 42px;
   height: 42px;
-  border: 2px solid #007DFE;
-  color: #007DFE;
+  border: 2px solid #007dfe;
+  color: #007dfe;
   font-weight: bold;
   border-radius: 50%;
   display: flex;
@@ -181,7 +184,7 @@ header {
 body.notif-body {
   background-color: #ffffff;
   padding: 60px 0;
-  margin : 90px;
+  margin: 90px;
 }
 
 .email-container {
@@ -189,7 +192,7 @@ body.notif-body {
   margin: 90px auto;
   background: #ffffff;
   border-radius: 10px;
-  border: 1px solid #0067E5;
+  border: 1px solid #0067e5;
   padding: 20px 40px 20px 40px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
@@ -211,7 +214,7 @@ body.notif-body {
 }
 
 .details {
-  background: #EDEFFE;
+  background: #edeffe;
   border-radius: 15px;
   padding: 20px 20px 20px 20px;
   margin-bottom: 20px;
@@ -248,8 +251,8 @@ body.notif-body {
   margin-top: 15px;
 }
 
- .table-tr {
- margin-bottom: 100px !;
+.table-tr {
+  margin-bottom: 100px !;
 }
 
 .details td {
@@ -270,9 +273,9 @@ body.notif-body {
   gap: 15px;
 }
 
- .icon {
+.icon {
   padding: 20px 0px 20px 0px;
- }  
+}
 
 .content {
   padding: 15px 5px 10px 5px;
@@ -281,9 +284,8 @@ body.notif-body {
 .divider {
   height: 100px;
   width: 15px;
-  background-color: #0067E5;
+  background-color: #0067e5;
   border-radius: 12px;
-  
 }
 
 .info-email strong {

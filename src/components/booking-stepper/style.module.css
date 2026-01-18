@@ -1,0 +1,44 @@
+.step-header {
+  display: flex;
+  background-color: #edeffe;
+  color: white;
+  font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+}
+
+.step-active {
+  display: flex;
+  background: linear-gradient(to right, #67b3f4, #357ae8);
+  width: 100%;
+  border-radius: 0px 50px 50px 0px;
+}
+
+.step-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0px;
+  width: 50%;
+  color: #8e94d2;
+}
+
+.step-active > .step-wrapper {
+  color: #ffffff;
+}
+
+.step {
+  background-color: white;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  color: #007dfe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
